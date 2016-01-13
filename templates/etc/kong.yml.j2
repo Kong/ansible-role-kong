@@ -21,7 +21,8 @@ dnsmasq_port: {{ kong_conf_dnsmasq_port }}
 database: {{ kong_conf_database }}
 
 ## Databases configuration
-databases_available: {{ kong_conf_databases_available }}
+databases_available: 
+  {{ kong_conf_databases_available|to_nice_yaml }}
 
 ## Cassandra cache configuration
 database_cache_expiration: {{ kong_conf_database_cache_expiration }} # in seconds
