@@ -1,0 +1,85 @@
+#!/bin/sh
+### BEGIN INIT INFO
+# Provides:          Kong
+# Required-Start:    $local_fs $network $named $time $syslog
+# Required-Stop:     $local_fs $network $named $time $syslog
+# Default-Start:     2 3 4 5
+# Default-Stop:      0 1 6
+# Description:       Kong service wrapper (getkong.org)
+### END INIT INFO
+
+SCRIPT=kong
+RUNAS={{ kong_user }}
+NAME=kong
+
+PIDFILE={{ kong_service_pid }}
+LOGFILE={{ kong_service_log }}
+
+start() {
+  if [ -f $PIDFILE ] && kill -0 $(cat $PIDFILE); then
+    echo 'Service already running' >&2
+    return 1
+  fi
+  echo 'Starting service…' >&2
+  local CMD="$SCRIPT start > \"$LOGFILE\""
+  su -c "$CMD" $RUNAS
+  echo 'Service started' >&2
+}
+
+stop() {
+  if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE"); then
+    echo 'Service not running' >&2
+    return 1
+  fi
+  echo 'Stopping service…' >&2
+  local CMD="$SCRIPT stop > \"$LOGFILE\""
+  su -c "$CMD" $RUNAS
+  echo 'Service stopped' >&2
+}
+
+reload() {
+  if [ ! -f "$PIDFILE" ] || ! kill -0 $(cat "$PIDFILE"); then
+    echo 'Service not running' >&2
+    return 1
+  fi
+  echo 'Reloading configuration' >&2
+  local CMD="$SCRIPT reload > \"$LOGFILE\""
+  su -c "$CMD" $RUNAS
+  echo 'Configuration reloaded' >&2
+}
+
+status() {
+        printf "%-50s" "Checking $NAME..."
+    if [ -f $PIDFILE ]; then
+        PID=$(cat $PIDFILE)
+            if [ -z "$(ps axf | grep ${PID} | grep -v grep)" ]; then
+                printf "%s\n" "The process appears to be dead but pidfile still exists"
+            else    
+                echo "Running, the PID is $PID"
+            fi
+    else
+        printf "%s\n" "Service not running"
+    fi
+}
+
+
+case "$1" in
+  start)
+    start
+    ;;
+  stop)
+    stop
+    ;;
+  status)
+    status
+    ;;
+  reload)
+    reload
+    ;;
+  restart)
+    stop
+    start
+    ;;
+  *)
+    echo "Usage: $0 {start|stop|status|restart|reload}"
+esac

@@ -1,0 +1,6 @@
+---
+- name: restart kong
+  service: name=kong state=restarted
+
+- name: reload kong
+  service: name=kong state=reloaded
