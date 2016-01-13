@@ -21,7 +21,7 @@
    - reload kong
 
 - name: Setup init.d script 
-  template: src=etc/kong.init.d.j2 dest="/etc/init.d/kong"
+  template: src=etc/kong.init.d.j2 dest="/etc/init.d/kong" mode="u=rwx,g=rx,o=rx"
   notify:
    - restart kong
 
