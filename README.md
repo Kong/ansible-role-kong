@@ -1,5 +1,5 @@
 # ansible-role-kong
-[![Build Status](https://travis-ci.org/Getsidecar/ansible-role-kong.svg?branch=master)](https://travis-ci.org/Getsidecar/ansible-role-kong)
+[![Ansible Galaxy](http://img.shields.io/badge/ansible--galaxy-jessem.kong-blue.svg)](https://galaxy.ansible.com/detail#/role/7032) [![Build Status](https://travis-ci.org/Getsidecar/ansible-role-kong.svg?branch=master)](https://travis-ci.org/Getsidecar/ansible-role-kong)
 
 An Ansible role that installs [Kong](https://getkong.org) on Ubuntu.  
 
@@ -25,4 +25,4 @@ None
 
 ## License
 
-MIT
+See the LICENSE file for license rights and limitations (MIT).
