@@ -5,9 +5,12 @@ python: "2.7"
 before_install:
   # Make sure everything's up to date.
   - sudo apt-get update -qq
+  - bash .ci/setup_cassandra.sh
 
-services:
-  - cassandra
+env:
+  global:
+    - CASSANDRA_VERSION=2.2.4
+    - "HOSTS=127.0.0.1,127.0.0.2,127.0.0.3"
 
 dist: trusty
 
