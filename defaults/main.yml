@@ -1,9 +1,11 @@
 ---
+ubuntu_flavor: "trusty"
+
 kong_user: "kong"
 kong_group: "{{ kong_user }}"
 kong_working_dir: "/opt"
 kong_source_ver: "0.5.4"
-kong_source_deb: "https://github.com/Mashape/kong/releases/download/{{ kong_source_ver }}/kong-{{ kong_source_ver }}.trusty_all.deb"
+kong_source_deb: "https://github.com/Mashape/kong/releases/download/{{ kong_source_ver }}/kong-{{ kong_source_ver }}.{{ ubuntu_flavor }}_all.deb"
 kong_conf_dest: "/etc/kong/kong.yml"
 kong_service_state: "started"
 kong_service_enabled: "yes"
