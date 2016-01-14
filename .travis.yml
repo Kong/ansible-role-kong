@@ -9,6 +9,8 @@ before_install:
 services:
   - cassandra
 
+dist: trusty
+
 install:
   # Install Ansible.
   - pip install ansible
