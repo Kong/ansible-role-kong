@@ -7,7 +7,7 @@ kong_conf_dest: "/etc/kong/kong.yml"
 kong_service_state: "started"
 kong_service_enabled: "yes"
 kong_service_pid: "/usr/local/kong/kong.pid"
-kong_service_log: "/var/log/kong.log"
+kong_service_log_dir: "/var/log/kong"
 kong_dependencies: 
   - netcat 
   - lua5.1

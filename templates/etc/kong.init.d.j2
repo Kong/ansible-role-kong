@@ -13,7 +13,7 @@ RUNAS={{ kong_user }}
 NAME=kong
 
 PIDFILE={{ kong_service_pid }}
-LOGFILE={{ kong_service_log }}
+LOGFILE={{ kong_service_log_dir }}/kong.log
 
 start() {
   if [ -f $PIDFILE ] && kill -0 $(cat $PIDFILE); then
@@ -21,7 +21,7 @@ start() {
     return 1
   fi
   echo 'Starting service…' >&2
-  local CMD="$SCRIPT start > \"$LOGFILE\""
+  local CMD="$SCRIPT start >> \"$LOGFILE\""
   su -c "$CMD" $RUNAS
   echo 'Service started' >&2
 }
@@ -32,7 +32,7 @@ stop() {
     return 1
   fi
   echo 'Stopping service…' >&2
-  local CMD="$SCRIPT stop > \"$LOGFILE\""
+  local CMD="$SCRIPT stop >> \"$LOGFILE\""
   su -c "$CMD" $RUNAS
   echo 'Service stopped' >&2
 }
@@ -43,7 +43,7 @@ reload() {
     return 1
   fi
   echo 'Reloading configuration' >&2
-  local CMD="$SCRIPT reload > \"$LOGFILE\""
+  local CMD="$SCRIPT reload >> \"$LOGFILE\""
   su -c "$CMD" $RUNAS
   echo 'Configuration reloaded' >&2
 }
