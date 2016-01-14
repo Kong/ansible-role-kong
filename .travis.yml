@@ -8,9 +8,6 @@ before_install:
   - sudo sh -c "echo 'JVM_OPTS=\"\${JVM_OPTS} -Djava.net.preferIPv4Stack=false\"' >> /usr/local/cassandra/conf/cassandra-env.sh"
   - sudo service cassandra start
 
-services:
-  - cassandra
-
 install:
   # Install Ansible.
   - pip install ansible
@@ -30,3 +27,6 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)"
   # Make a request to the Kong REST API to confirm that the server is up
   - "curl http://localhost:8001/apistests"
+
+after_failure:
+  - sudo sh -c "cat /var/log/kong/kong.log"
