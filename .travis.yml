@@ -4,7 +4,7 @@ python: "2.7"
 
 env:
   global:
-    - CASSANDRA_VERSION=2.1.10
+    - CASSANDRA_VERSION=2.2.4
 
 before_install:
   # Make sure everything's up to date.
