@@ -1,7 +1,7 @@
 ---
 galaxy_info:
   author: Jesse Merlin
-  description: An Ansible role that installs Kong on Ubuntu 14.04
+  description: An Ansible role that installs Kong on Ubuntu.
   company: Sidecar
   license: MIT
   min_ansible_version: 1.9
