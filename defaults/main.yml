@@ -2,17 +2,18 @@
 kong_user: "kong"
 kong_group: "{{ kong_user }}"
 kong_working_dir: "/opt"
-kong_source_deb: "https://github.com/Mashape/kong/releases/download/0.5.4/kong-0.5.4.trusty_all.deb"
+kong_source_ver: "0.5.4"
+kong_source_deb: "https://github.com/Mashape/kong/releases/download/{{ kong_source_ver }}/kong-{{ kong_source_ver }}.trusty_all.deb"
 kong_conf_dest: "/etc/kong/kong.yml"
 kong_service_state: "started"
 kong_service_enabled: "yes"
 kong_service_pid: "/usr/local/kong/kong.pid"
 kong_service_log_dir: "/var/log/kong"
-kong_dependencies: 
-  - netcat 
+kong_dependencies:
+  - netcat
   - lua5.1
   - openssl
-  - libpcre3 
+  - libpcre3
   - dnsmasq
 
 kong_conf_plugins_available:
