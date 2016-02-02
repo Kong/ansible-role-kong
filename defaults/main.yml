@@ -39,19 +39,19 @@ kong_conf_plugins_available:
   - rate-limiting
   - response-ratelimiting
 kong_conf_nginx_working_dir: "/usr/local/kong/"
-kong_conf_proxy_port: 8000
+kong_conf_proxy_address: 0.0.0.0
+kong_conf_proxy_listen: 8000
 kong_conf_proxy_ssl_port: 8443
 kong_conf_admin_api_port: 8001
+kong_conf_cluster_port: 7946
 kong_conf_dnsmasq_port: 8053
+kong_conf_encryption_key: randomkey
 kong_conf_database: "cassandra"
-kong_conf_databases_available:
-  cassandra:
-    properties:
-      contact_points:
-        - "localhost:9042"
-      timeout: 1000
-      keyspace: kong
-      keepalive: 60000
-kong_conf_database_cache_expiration: 5
+kong_conf_databases_contact_point: "localhost:9042"
+kong_conf_database_keyspace: "kong"
+kong_conf_replication_strategy: "SimpleStrategy"
+kong_conf_replication_factor: 1
+kong_conf_cluster_user: "cassandra"
+kong_conf_cluster_password: "cassandra"
 kong_conf_send_anonymous_reports: true
 kong_conf_memory_cache_size: 128
