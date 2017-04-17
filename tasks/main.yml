@@ -4,7 +4,7 @@
 
 - name: Install dependencies
   apt: pkg={{ item }} state=installed
-  with_items: kong_dependencies
+  with_items: "{{ kong_dependencies }}"
 
 - name: Install deb
   apt: deb={{ kong_working_dir }}/kong.deb
