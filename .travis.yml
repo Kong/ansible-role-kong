@@ -11,7 +11,9 @@ install:
   - sudo mkdir -p "${mnt}"
   - sudo chown -R "${USER}" "${run}"
   - keybase service &
+  - sleep 5
   - kbfsfuse "${mnt}" &
+  - sleep 5
 
 script:
   - printenv > env_file
